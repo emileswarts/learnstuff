@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset=utf-8 />
+<title>Populating select boxes demo</title>
+<style>
+body {
+  padding: 0 45px;
+  background: url(http://jqueryfordesigners.com/wp-content/themes/j4d/static/images/article.png) repeat-y center bottom;
+  max-width: 864px;
+  margin: 20px auto;
+}
+
+body, select, input {
+  font: normal 16px/22px Georgia;
+}
+
+h1 {
+  font: normal 36px/36px Georgia;
+  letter-spacing: -1px;
+}
+</style>
+</head>
+<body>
+  <h1>Populating Select Boxes</h1>
+  <form action="select-boxes.html">
+    <label for="category">Category:</label>
+    <select name="category" id="category">
+      <option value="easy">Easy</option>
+      <option selected value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+    <input type="submit" id="next" value="next &raquo;" />
+  </form>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(function(){
+
+                    var $category = $('#category'),
+					$article = null;
+					$category.change(function(){
+						var categoryName = $category.val();
+
+						if($article === null)
+						{
+							$article = $('<select name="article" id="article"> </select>').appendTo('form');
+							$next.remove();
+							$('form').append('<input type="submit" name="submit" value="">')
+
+						}
+
+						$article.load(categoryName + '.html');
+
+						});
+
+					var $next = $('#next');
+					$('#next')[0].setAttribute('type','button');
+					});
+		</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
