@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset=utf-8 />
+<title>Scroll linked navigation</title>
+<style>
+body {
+  margin: 0;
+  font: 24px/1.4em georgia;
+}
+nav {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 180px;
+  display: block;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+nav a,
+#selectedBacking {
+  display: block;
+  color: #aaa;
+  text-decoration: none;
+  padding: 10px;
+  border: 2px solid #ccc;
+  margin: 10px 0;
+  border-radius: 30px;
+  -moz-border-radius: 30px;
+  padding-left: 20px;
+  height: 30px;
+  z-index: 2;
+  position: relative;
+}
+nav a:hover {
+  border: 2px solid #333;
+  background: #999;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#999), to(#999), color-stop(.6,#666));
+  color: #fff;
+}
+nav a.selected,
+#selectedBacking {
+  border: 2px solid #333;
+  background: #666;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#666), to(#666), color-stop(.6,#333));
+  background: -moz-gradient(linear, 0% 0%, 0% 100%, from(#666), to(#666), color-stop(.6,#333));
+  background: gradient(linear, 0% 0%, 0% 100%, from(#666), to(#666), color-stop(.6,#333));
+  color: #fff;
+}
+#selectedBacking {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  width: 145px;
+}
+#content {
+  margin-left: 220px;
+  width: 600px;
+}
+#content section {
+  display: block;
+  padding-top: 10px;
+}
+#spacer {
+  height: 600px;
+}
+</style>
+</head>
+<body>
+<nav>
+  <ul>
+    <li><a class="selected" href="#first">first</a></li>
+    <li><a href="#second">second</a></li>
+    <li><a href="#third">third</a></li>
+    <li><a href="#fourth">fourth</a></li>
+  </ul>
+</nav>
+<div id="content">
+  <section id="first">
+    <h1>First content section</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </section>
+  <section id="second">
+    <h1>Second content section</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <h2>Second content more h1</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </section>
+  <section id="third">
+    <h1>Third content section</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </section>
+  <section id="fourth">
+    <h1>Fourth content section</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </section>
+  <div id="spacer"><!-- this is only here for the demo --></div>
+</div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="js/jquery.viewport.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+	
+$(window).scroll(function(){
+	var inview = $('#content > section > h1:in-viewport:first').parent().attr('id');
+	console.log($('nav a[hash=#' + inview + ']').text());
+
+});
+</script>
+</body>
+</html>
